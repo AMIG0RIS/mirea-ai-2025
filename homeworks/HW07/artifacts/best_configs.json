@@ -1,0 +1,23 @@
+{
+    "S07-hw-dataset-01.csv": {
+        "algorithm": "KMeans",
+        "params": {
+            "k": 2
+        },
+        "score": 0.522
+    },
+    "S07-hw-dataset-02.csv": {
+        "algorithm": "KMeans",
+        "params": {
+            "k": 2
+        },
+        "score": 0.307
+    },
+    "S07-hw-dataset-03.csv": {
+        "algorithm": "KMeans",
+        "params": {
+            "k": 3
+        },
+        "score": 0.316
+    }
+}
