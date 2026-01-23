@@ -1,0 +1,12 @@
+{
+    "model_name": "RandomForest_GridSearch",
+    "best_params": {
+        "max_features": 10,
+        "min_samples_leaf": 1
+    },
+    "metrics_test": {
+        "accuracy": 0.9696620283378193,
+        "f1": 0.8902045209903121,
+        "roc_auc": 0.9112640292519426
+    }
+}
