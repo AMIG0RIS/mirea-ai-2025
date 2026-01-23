@@ -1,0 +1,32 @@
+{
+    "dataset1": {
+        "KMeans": {
+            "k": 2
+        },
+        "Agglomerative": {
+            "n_clusters": 2,
+            "linkage": "ward"
+        },
+        "best_model": "KMeans"
+    },
+    "dataset2": {
+        "KMeans": {
+            "k": 2
+        },
+        "DBSCAN": {
+            "eps": 0.1,
+            "min_samples": 10
+        },
+        "best_model": "DBSCAN"
+    },
+    "dataset3": {
+        "KMeans": {
+            "k": 3
+        },
+        "DBSCAN": {
+            "eps": 0.1,
+            "min_samples": 10
+        },
+        "best_model": "DBSCAN"
+    }
+}
