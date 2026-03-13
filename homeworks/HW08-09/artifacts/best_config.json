@@ -1,0 +1,23 @@
+{
+    "architecture": {
+        "num_classes": 47,
+        "hidden_dims": [
+            256,
+            128
+        ],
+        "dropout_p": 0.0,
+        "use_batchnorm": true
+    },
+    "optimizer": {
+        "name": "Adam",
+        "lr": 0.001,
+        "weight_decay": 0.0
+    },
+    "training": {
+        "epochs_trained": 8,
+        "early_stopping_patience": 4,
+        "batch_size": 256
+    },
+    "seed": 42,
+    "dataset": "EMNIST(split='balanced')"
+}
