@@ -1,0 +1,26 @@
+{
+  "seed": 42,
+  "dataset": "Flowers102",
+  "experiment_id": "C4",
+  "notes": "resnet18-finetune-layer4+fc",
+  "model_family": "resnet18",
+  "freeze_mode": "layer4_fc",
+  "with_aug": true,
+  "epochs_trained": 8,
+  "lr": 0.001,
+  "best_val_accuracy": 0.9117647058823529,
+  "best_epoch": 8,
+  "test_accuracy": 0.8889250284599122,
+  "image_size": 224,
+  "artifact_paths": {
+    "runs_csv": "artifacts/runs.csv",
+    "best_classifier_pt": "artifacts/best_classifier.pt",
+    "best_classifier_config_json": "artifacts/best_classifier_config.json",
+    "classification_curves_best_png": "artifacts/figures/classification_curves_best.png",
+    "classification_compare_png": "artifacts/figures/classification_compare.png",
+    "augmentations_preview_png": "artifacts/figures/augmentations_preview.png",
+    "segmentation_examples_png": "artifacts/figures/segmentation_examples.png",
+    "segmentation_metrics_png": "artifacts/figures/segmentation_metrics.png",
+    "data_dir": "../../data"
+  }
+}

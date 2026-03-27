@@ -1,0 +1,17 @@
+{
+  "config": {
+    "window_size": 168,
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "batch_size": 128,
+    "max_epochs": 20,
+    "patience": 5,
+    "learning_rate": 0.001,
+    "grad_clip": 1.0
+  },
+  "target_mean": 128.2057647705078,
+  "target_std": 18.481542587280273,
+  "best_epoch": 6,
+  "best_val_mae": 6.5951619148254395
+}

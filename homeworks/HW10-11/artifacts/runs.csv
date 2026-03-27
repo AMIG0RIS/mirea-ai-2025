@@ -1,0 +1,7 @@
+experiment_id,task,dataset,seed,model_summary,optimizer,lr,epochs_trained,best_val_accuracy,test_accuracy,precision,recall,mean_iou,notes
+C1,classification,Flowers102,42,"simple_cnn(trainable=346694, total=346694, freeze_mode=None)",AdamW,0.003,12,0.1617647058823529,,,,,simple-cnn-base
+C2,classification,Flowers102,42,"simple_cnn(trainable=346694, total=346694, freeze_mode=None)",AdamW,0.003,12,0.1715686274509804,,,,,simple-cnn-aug
+C3,classification,Flowers102,42,"resnet18(trainable=52326, total=11228838, freeze_mode=head_only)",AdamW,0.002,6,0.788235294117647,,,,,resnet18-head-only
+C4,classification,Flowers102,42,"resnet18(trainable=8446054, total=11228838, freeze_mode=layer4_fc)","AdamW(param_groups: layer4 lower LR, fc base LR)",0.001,8,0.9117647058823528,0.8889250284599122,,,,resnet18-finetune-layer4+fc
+V1,segmentation,OxfordIIITPet,42,"DeepLabV3_ResNet50(weights=DEFAULT, cat/dog -> pet foreground)",,,0,,,0.791630691231708,0.9807606331497184,0.7452352785696297,raw thresholding
+V2,segmentation,OxfordIIITPet,42,"DeepLabV3_ResNet50(weights=DEFAULT, cat/dog -> pet foreground)",,,0,,,0.785462101740419,0.9827174477315209,0.7404512331538511,thresholding + morphology
