@@ -1,17 +1,60 @@
 {
-  "config": {
-    "window_size": 168,
+  "experiment_id": "R1_gru_forecast_seed42_ws168",
+  "task": "time_series_forecasting",
+  "dataset": "S12-hw-dataset.csv",
+  "seed": 42,
+  "target_column": "target",
+  "frequency": "1H",
+  "horizon": 1,
+  "window_size": 168,
+  "split_summary": {
+    "strategy": "temporal_split",
+    "train_fraction": 0.7,
+    "validation_fraction": 0.15,
+    "test_fraction": 0.15,
+    "train_start": "2025-01-01 00:00:00",
+    "train_end": "2025-05-06 23:00:00",
+    "validation_start": "2025-05-07 00:00:00",
+    "validation_end": "2025-06-02 23:00:00",
+    "test_start": "2025-06-03 00:00:00",
+    "test_end": "2025-06-29 23:00:00",
+    "random_split_used": false,
+    "shuffle_used_for_temporal_folds": false,
+    "reason_random_split_incorrect": "random split mixes past and future observations and can leak future information into training"
+  },
+  "architecture": {
+    "model_type": "GRUForecast",
+    "rnn_type": "GRU",
+    "input_size": 1,
     "hidden_size": 32,
     "num_layers": 1,
     "dropout": 0.0,
+    "head": "Linear(hidden_size -> 1)"
+  },
+  "training_hyperparameters": {
+    "loss": "MSELoss",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
     "batch_size": 128,
     "max_epochs": 20,
     "patience": 5,
-    "learning_rate": 0.001,
-    "grad_clip": 1.0
+    "grad_clip": 1.0,
+    "model_selection_metric": "val_mae"
   },
-  "target_mean": 128.2057647705078,
-  "target_std": 18.481542587280273,
-  "best_epoch": 6,
-  "best_val_mae": 6.5951619148254395
+  "scaler": {
+    "name": "zscore_train_only",
+    "fit_on": "train_only",
+    "target_mean": 128.2057647705078,
+    "target_std": 18.481542587280273,
+    "formula": "(x - train_mean) / train_std"
+  },
+  "best_epoch": 20,
+  "epochs_trained": 20,
+  "best_val_mae": 6.386080741882324,
+  "best_val_rmse": 7.921051524322801,
+  "best_val_mape": 4.2902140617370605,
+  "test_mae": 6.584397315979004,
+  "test_rmse": 8.417595336845482,
+  "test_mape": 4.249739646911621,
+  "notes": "Temporal split only; model selected by validation MAE; scaler fit on train only."
 }

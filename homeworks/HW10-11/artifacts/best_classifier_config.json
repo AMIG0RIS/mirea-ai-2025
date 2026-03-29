@@ -1,17 +1,168 @@
 {
   "seed": 42,
   "dataset": "Flowers102",
+  "split_policy": {
+    "train": "official Flowers102 train split",
+    "val": "official Flowers102 val split",
+    "test": "official Flowers102 test split"
+  },
   "experiment_id": "C4",
   "notes": "resnet18-finetune-layer4+fc",
-  "model_family": "resnet18",
-  "freeze_mode": "layer4_fc",
-  "with_aug": true,
-  "epochs_trained": 8,
-  "lr": 0.001,
-  "best_val_accuracy": 0.9117647058823529,
-  "best_epoch": 8,
-  "test_accuracy": 0.8889250284599122,
-  "image_size": 224,
+  "model": {
+    "family": "resnet18",
+    "architecture": "resnet18",
+    "pretrained": true,
+    "pretrained_weights": "ResNet18_Weights.DEFAULT",
+    "freeze_mode": "layer4_fc",
+    "num_classes": 102,
+    "image_size": 224
+  },
+  "training": {
+    "epochs_trained": 8,
+    "lr": 0.001,
+    "optimizer": "AdamW(param_groups: layer4 lower LR, fc base LR)",
+    "loss": "CrossEntropyLoss",
+    "weight_decay": 0.0001,
+    "batch_size": 32,
+    "with_aug": true
+  },
+  "transforms": {
+    "train": {
+      "pipeline_name": "resnet18_train_transform",
+      "steps": [
+        {
+          "name": "RandomResizedCrop",
+          "params": {
+            "size": [
+              224,
+              224
+            ],
+            "scale": [
+              0.7,
+              1.0
+            ],
+            "antialias": true
+          }
+        },
+        {
+          "name": "RandomHorizontalFlip",
+          "params": {
+            "p": 0.5
+          }
+        },
+        {
+          "name": "ColorJitter",
+          "params": {
+            "brightness": 0.1,
+            "contrast": 0.1,
+            "saturation": 0.1,
+            "hue": 0.02
+          }
+        },
+        {
+          "name": "ToImage",
+          "params": {}
+        },
+        {
+          "name": "ToDtype",
+          "params": {
+            "dtype": "torch.float32",
+            "scale": true
+          }
+        },
+        {
+          "name": "Normalize",
+          "params": {
+            "mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "std": [
+              0.229,
+              0.224,
+              0.225
+            ]
+          }
+        }
+      ]
+    },
+    "eval": {
+      "pipeline_name": "resnet18_eval_transform",
+      "steps": [
+        {
+          "name": "Resize",
+          "params": {
+            "size": 256,
+            "antialias": true
+          }
+        },
+        {
+          "name": "CenterCrop",
+          "params": {
+            "size": 224
+          }
+        },
+        {
+          "name": "ToImage",
+          "params": {}
+        },
+        {
+          "name": "ToDtype",
+          "params": {
+            "dtype": "torch.float32",
+            "scale": true
+          }
+        },
+        {
+          "name": "Normalize",
+          "params": {
+            "mean": [
+              0.485,
+              0.456,
+              0.406
+            ],
+            "std": [
+              0.229,
+              0.224,
+              0.225
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "augmentation": {
+    "enabled": true,
+    "applied_in_train_only": true,
+    "ops": [
+      "RandomResizedCrop(size=(224,224), scale=(0.7,1.0), antialias=True)",
+      "RandomHorizontalFlip(p=0.5)",
+      "ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0.02)"
+    ]
+  },
+  "preprocess": {
+    "inference_preprocess_name": "ImageNet-style ResNet18 eval preprocess",
+    "resize": 256,
+    "center_crop": 224,
+    "to_dtype": "torch.float32",
+    "scale_to_0_1": true,
+    "normalize_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "normalize_std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "results": {
+    "best_val_accuracy": 0.9117647058823529,
+    "best_epoch": 8,
+    "test_accuracy": 0.8889250284599122
+  },
   "artifact_paths": {
     "runs_csv": "artifacts/runs.csv",
     "best_classifier_pt": "artifacts/best_classifier.pt",
